@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div style = "max-width: 980px; margin:auto">
+        <img src="/static/dobby.jpg" style = "max-width:300px"><br>
+        <a href = "{% url 'post:create_post1' %}">forms.py를 이용한 게시물 작성</a><br>
+        <a href = "{% url 'post:create_post2' %}">forms.py를 이용하지 않고 게시물 작성</a>
+        {% for post in posts %}
+            <div style="width:100%; border:1px solid black; padding:10px; margin: 10px 0;">
+                <span>
+                    제목 : {{ post.title }}
+                </span>
+                <span>
+                    글쓴이 : {{ post.author }}
+                </span>
+                <span>
+                    작성일 : {{ post.created_at }}
+                </span>
+                <br>
+                {% if post.image %}
+                <span>
+                    <img src="{{ post.image.url }}" style = "max-width:300px">
+                </span>
+                {% endif %}
+                <br>
+                <span>
+                    {{ post.content | linebreaks }}
+                </span>
+            </div>
+        {% endfor %}
+    </div>
+
+
+</body>
+</html>
